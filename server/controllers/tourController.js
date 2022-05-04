@@ -71,7 +71,7 @@ exports.createTour = async (req, res) => {
 
     res.status(201).json({ status: "success", data: { tour: newTour } });
   } catch (err) {
-    res.status(400).json({ status: "failed", message: "Invalid dataset!" });
+    res.status(400).json({ status: "failed", message: err });
   }
 };
 
