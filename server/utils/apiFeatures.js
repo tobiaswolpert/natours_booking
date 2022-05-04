@@ -30,7 +30,7 @@ class APIFeatures {
 
   limitFields() {
     if (this.queryString.fields) {
-      const limitBy = this.queryString.fields.replaceAll(",", " ");
+      const limitBy = this.queryString.fields.replaceAll(",", "");
       console.log(limitBy);
       this.query = this.query.select(limitBy);
     } else {
