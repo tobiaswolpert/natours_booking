@@ -12,6 +12,11 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, "Invalid Email Address"],
   },
   photo: { type: String },
+  role: {
+    type: String,
+    enum: ["user", "guide", "lead-guide", "admin"],
+    default: "user",
+  },
   password: {
     type: String,
     required: [true, "Please provide a password"],
@@ -28,6 +33,7 @@ const userSchema = new mongoose.Schema({
       message: "Password must be equal",
     },
   },
+  passwordChangedAt: Date,
 });
 
 userSchema.pre("save", async function (next) {
@@ -47,6 +53,20 @@ userSchema.methods.correctPassword = async function (
   userPassword
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    console.log(JWTTimestamp, changedTimeStamp);
+    return JWTTimestamp < changedTimeStamp;
+  }
+
+  //False means not changed
+  return false;
 };
 
 const User = mongoose.model("User", userSchema);
