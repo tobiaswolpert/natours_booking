@@ -1,11 +1,14 @@
 const express = require("express");
 const tourController = require("../controllers/tourController");
 const authenticationController = require("../controllers/authenticationController");
+const reviewRouter = require("../routes/reviewRoutes");
 
 const router = express.Router();
 
 //Not needed anymore. ID validation will be done by mongoDB
 // router.param("id", tourController.checkID);
+
+router.use("/:tourId/reviews", reviewRouter);
 
 router
   .route("/top-5-cheap")

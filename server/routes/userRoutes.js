@@ -3,6 +3,8 @@ const userController = require("../controllers/userController");
 const router = express.Router();
 const authenticationController = require("../controllers/authenticationController");
 
+const { route } = require("./tourRoutes");
+
 router.route("/signup").post(authenticationController.signup);
 router.route("/login").post(authenticationController.login);
 

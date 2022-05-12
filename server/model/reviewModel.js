@@ -19,12 +19,27 @@ const reviewSchema = new mongoose.Schema(
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+reviewSchema.pre(/^find/, function (next) {
+  // this.populate({
+  //   path: "tour",
+  //   select: "name",
+  // }).populate({
+  //   path: "user",
+  //   select: "name photo",
+  // });
+
+  this.populate({
+    path: "user",
+    select: "name photo",
+  });
+
+  next();
+});
+
 const Review = mongoose.model("Review", reviewSchema);
 
 module.exports = Review;
 
-//review
-//rating
-//createdAt
-//ref to tour (Parent referencing)
-//ref to user (parent referenceing)
+//POST /tour/234fad4/reviews
+//GET /tour/234fad4/reviews
+//GET /tour/234fad4/reviews/dfdsfsdfsd343453
