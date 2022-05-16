@@ -5,34 +5,37 @@ const authenticationController = require("../controllers/authenticationControlle
 
 const { route } = require("./tourRoutes");
 
-router.route("/signup").post(authenticationController.signup);
-router.route("/login").post(authenticationController.login);
+router.post("/signup", authenticationController.signup);
+router.post("/login", authenticationController.login);
+router.post("/forgotPassword", authenticationController.forgotPassword);
+router.patch("/resetPassword/:token", authenticationController.resetPassword);
+
+//Router based middleware, middleware will protect all the routes from here on and below but not the routes above this line of code.
+router.use(authenticationController.protect);
+
+router.patch("/updateMyPassword", authenticationController.updatePassword);
 
 router.get(
   "/me",
-  authenticationController.protect,
+
   userController.getMe,
   userController.getUser
-);
-router.post("/forgotPassword", authenticationController.forgotPassword);
-router.patch("/resetPassword/:token", authenticationController.resetPassword);
-router.patch(
-  "/updateMyPassword",
-  authenticationController.protect,
-  authenticationController.updatePassword
 );
 
 router.patch(
   "/updateMe",
-  authenticationController.protect,
+
   userController.updateMe
 );
 
 router.delete(
   "/deleteMe",
-  authenticationController.protect,
+
   userController.deleteMe
 );
+
+//Will protect the routes below that they can only be accessed by a user with role: admin
+router.use(authenticationController.restrictTo("admin"));
 
 router
   .route("/")
