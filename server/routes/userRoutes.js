@@ -8,6 +8,12 @@ const { route } = require("./tourRoutes");
 router.route("/signup").post(authenticationController.signup);
 router.route("/login").post(authenticationController.login);
 
+router.get(
+  "/me",
+  authenticationController.protect,
+  userController.getMe,
+  userController.getUser
+);
 router.post("/forgotPassword", authenticationController.forgotPassword);
 router.patch("/resetPassword/:token", authenticationController.resetPassword);
 router.patch(
