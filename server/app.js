@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const path = require("path");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -17,6 +18,9 @@ const app = express();
 // 1) GLOBAL Middlewares
 //SET SECURITY HTTP headers
 app.use(helmet());
+
+//Serving static files
+app.use(express.static(path.join(__dirname, "public")));
 
 //DEVELOPMENT logging with morgan middleware
 if (process.env.NODE_ENV === "development") {
@@ -53,9 +57,6 @@ app.use(
     ],
   })
 );
-
-//Serving static files
-app.use(express.static(`${__dirname}/public`));
 
 //Test Middleware
 app.use((req, res, next) => {
