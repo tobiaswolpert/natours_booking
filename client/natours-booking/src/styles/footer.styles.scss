@@ -1,0 +1,25 @@
+.footer {
+  height: 8rem;
+  display: flex;
+  color: black;
+  align-items: center;
+  padding: 1rem;
+
+  &__logo {
+    flex: 1;
+    display: flex;
+
+    img {
+      display: block;
+      object-fit: contain;
+      width: 15rem;
+    }
+  }
+
+  &__list {
+    gap: 2rem;
+    justify-content: flex-end;
+    flex: 1;
+    display: flex;
+  }
+}

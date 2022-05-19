@@ -3,29 +3,42 @@
 .header {
   display: flex;
   height: 8rem;
-  // padding: 0 5rem;
   background-color: index.$color-grey-dark;
   align-items: center;
   justify-content: flex-end;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  padding: 1rem;
 
   &__text {
     flex: 1;
+    align-items: center;
   }
 
   &__logo {
     flex: 1;
+    display: block;
+    object-fit: contain;
+    height: 5rem;
+    width: 5rem;
   }
 
   .authentication {
     flex: 1;
     display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
 
     &__login {
-      flex: 1;
+      text-align: center;
     }
 
     &__signup {
-      flex: 1;
+      padding: 0.5rem 1rem;
+      border: 1px solid index.$color-white;
+      text-align: center;
+      border-radius: 100px;
     }
   }
 }
