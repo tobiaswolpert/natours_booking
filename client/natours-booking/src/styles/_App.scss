@@ -1,0 +1,9 @@
+@use "index";
+
+.App {
+  max-width: 120rem;
+  margin: 8rem auto;
+  background-color: index.$color-grey-light-1;
+  box-shadow: index.$color-grey-light-2;
+  min-height: 50rem;
+}

@@ -1,0 +1,31 @@
+@use "index";
+
+.header {
+  display: flex;
+  height: 8rem;
+  // padding: 0 5rem;
+  background-color: index.$color-grey-dark;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__text {
+    flex: 1;
+  }
+
+  &__logo {
+    flex: 1;
+  }
+
+  .authentication {
+    flex: 1;
+    display: flex;
+
+    &__login {
+      flex: 1;
+    }
+
+    &__signup {
+      flex: 1;
+    }
+  }
+}
