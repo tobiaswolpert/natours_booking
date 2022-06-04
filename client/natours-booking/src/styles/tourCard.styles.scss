@@ -1,0 +1,20 @@
+@use "index";
+
+.card {
+  color: black;
+  background-color: white;
+  flex: 0 1 33%;
+  position: relative;
+
+  &__picture {
+    background-color: index.$color-primary-light;
+    height: 40%;
+  }
+
+  &__description {
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    color: white;
+  }
+}
