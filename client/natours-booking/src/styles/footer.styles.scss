@@ -4,16 +4,12 @@
   color: black;
   align-items: center;
   padding: 1rem;
+  justify-content: flex-start;
 
   &__logo {
-    flex: 1;
-    display: flex;
-
-    img {
-      display: block;
-      object-fit: contain;
-      width: 15rem;
-    }
+    display: block;
+    object-fit: contain;
+    height: 3rem;
   }
 
   &__list {

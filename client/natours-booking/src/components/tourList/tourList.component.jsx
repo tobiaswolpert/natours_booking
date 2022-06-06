@@ -3,22 +3,22 @@ import TourCard from "../tourCard/tourCard.component";
 
 const TourList = () => {
   const [tours, setTours] = useState([]);
-  console.log("tours", tours.data.doc[0]);
 
   useEffect(() => {
     const fetchData = async (url) => {
-      console.log(url);
       const result = await fetch(url);
       const data = await result.json();
-      setTours(data);
-      console.log("data", data);
+      setTours(data.data.doc);
     };
     fetchData("http://localhost:8000/api/v1/tours");
   }, []);
 
+  console.log("hallo");
   return (
     <div className="tourList">
-      <TourCard data={tours.data.doc[0]} />
+      {tours.map((tour) => (
+        <TourCard tour={tour} />
+      ))}
     </div>
   );
 };

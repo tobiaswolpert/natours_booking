@@ -3,18 +3,67 @@
 .card {
   color: black;
   background-color: white;
-  flex: 0 1 33%;
-  position: relative;
+  flex: 0 1 25%;
+  font-size: 1.5rem;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 10%);
+  border-radius: 5px;
+  overflow: hidden;
 
   &__picture {
     background-color: index.$color-primary-light;
-    height: 40%;
+    height: 5rem;
   }
 
   &__description {
-    position: absolute;
-    right: 10%;
-    top: 30%;
+    padding: 3rem;
+  }
+
+  &__heading {
+    text-transform: uppercase;
+    color: index.$color-grey-dark;
+    font-weight: 700;
+  }
+
+  &__text {
+    font-style: italic;
+    margin: 1rem 0;
+  }
+
+  &__details {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__location {
+    flex: 0 0 50%;
+  }
+
+  &__date {
+    flex: 0 0 50%;
+  }
+
+  &__stops {
+    flex: 0 0 50%;
+  }
+
+  &__people {
+    flex: 0 0 50%;
+  }
+
+  &__footer {
+    background-color: index.$color-grey-light-1;
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem;
+  }
+
+  &__btn {
     color: white;
+    background-color: index.$color-primary-light;
+    border: none;
+    border-radius: 100px;
+    width: 12rem;
+    text-transform: uppercase;
+    // margin-left: auto;
   }
 }

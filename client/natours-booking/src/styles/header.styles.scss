@@ -23,18 +23,18 @@
     width: 5rem;
   }
 
-  .authentication {
+  &__authentication {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     gap: 2rem;
     align-items: center;
 
-    &__login {
+    &-login {
       text-align: center;
     }
 
-    &__signup {
+    &-signup {
       padding: 0.5rem 1rem;
       border: 1px solid index.$color-white;
       text-align: center;

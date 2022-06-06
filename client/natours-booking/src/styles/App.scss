@@ -1,9 +1,8 @@
 @use "index";
 
 .App {
-  max-width: 140rem;
+  max-width: 180rem;
   margin: 8rem auto;
-  background-color: index.$color-grey-light-1;
+  background-color: index.$color-grey-light-2;
   box-shadow: index.$color-grey-light-2;
-  min-height: 50rem;
 }
