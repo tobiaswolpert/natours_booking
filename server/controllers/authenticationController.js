@@ -88,14 +88,14 @@ exports.protect = catchAsync(async (req, res, next) => {
   };
 
   const decoded = await promisifyJWT(token, process.env.JWT_SECRET);
-  console.log(decoded);
+  // console.log(decoded);
 
   // 3) Check if user still exists
   const freshUser = await User.findById(decoded.id);
-  console.log("FreshUser", freshUser);
+  // console.log("FreshUser", freshUser);
 
   if (!freshUser) {
-    console.log("In the block");
+    // console.log("In the block");
     return next(
       new AppError("The user belonging to the token does no longer exist", 401)
     );
@@ -156,7 +156,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     user.createPasswordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
-    console.log("Err", err);
+    // console.log("Err", err);
     return next(new AppError("There was an error sending the email", 500));
   }
 });

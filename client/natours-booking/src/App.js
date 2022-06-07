@@ -1,13 +1,16 @@
-import Header from "../src/components/header/header.component";
-import TourList from "../src/components/tourList/tourList.component";
-import Footer from "../src/components/footer/footer.component";
+import { Routes, Route } from "react-router-dom";
+import Home from "./routes/home/home.component";
+import Header from "./routes/header/header.component";
+// import Footer from "./components/footer/footer.component";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <TourList />
-      <Footer />
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Header />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

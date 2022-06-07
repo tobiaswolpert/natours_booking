@@ -1,12 +1,22 @@
 const TourCard = ({ tour }) => {
-  console.log("props", tour);
+  const url = "http://localhost:8000/img/tours/" + tour.imageCover;
+  console.log(tour);
   let date = new Date(tour.startDates[0].split("T")[0]);
-  console.log("date", date.toLocaleString("default", { month: "long" }));
-  console.log("date", date.getFullYear());
 
   return (
     <div className="card">
-      <div className="card__picture">Hallo</div>
+      <h3 className="card__title">
+        <span>{tour.name}</span>
+      </h3>
+      <div className="card__picture">
+        <div className="card__picture-overlay"></div>
+        <img
+          crossOrigin="anonymous"
+          className="card__picture-img"
+          src={url}
+          alt={tour.name}
+        />
+      </div>
 
       <div className="card__description">
         <div className="card__heading">
@@ -15,16 +25,33 @@ const TourCard = ({ tour }) => {
         <div className="card__text">{tour.summary}</div>
 
         <div className="card__details">
-          <div className="card__location">{tour.startLocation.description}</div>
-          <div className="card__date">
-            {date.toLocaleString("default", { month: "long" })}{" "}
-            {date.getFullYear()}
+          <div className="card__data">
+            <ion-icon name="location-outline"></ion-icon>
+            <div className="card__location">
+              {tour.startLocation.description}
+            </div>
           </div>
-          <div className="card__stops">
-            {tour.locations.length}{" "}
-            {tour.locations.length === 1 ? "stop" : "stops"}
+
+          <div className="card__data">
+            <ion-icon name="calendar-clear-outline"></ion-icon>
+            <div className="card__date">
+              {date.toLocaleString("default", { month: "long" })}{" "}
+              {date.getFullYear()}
+            </div>
           </div>
-          <div className="card__people">{tour.maxGroupSize} people</div>
+
+          <div className="card__data">
+            <ion-icon name="flag-outline"></ion-icon>
+            <div className="card__stops">
+              {tour.locations.length}{" "}
+              {tour.locations.length === 1 ? "stop" : "stops"}
+            </div>
+          </div>
+
+          <div className="card__data">
+            <ion-icon name="person-outline"></ion-icon>
+            <div className="card__people">{tour.maxGroupSize} people</div>
+          </div>
         </div>
       </div>
 
