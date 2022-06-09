@@ -1,6 +1,5 @@
 const TourCard = ({ tour }) => {
   const url = "http://localhost:8000/img/tours/" + tour.imageCover;
-  console.log(tour);
   let date = new Date(tour.startDates[0].split("T")[0]);
 
   return (

@@ -1,19 +1,9 @@
-import { useState, useEffect } from "react";
 import TourCard from "../tourCard/tourCard.component";
+import { useSelector } from "react-redux";
+import { selectToursMap } from "../../store/tours/tours.selector";
 
 const TourList = () => {
-  const [tours, setTours] = useState([]);
-  console.log(tours[0]);
-
-  useEffect(() => {
-    const fetchData = async (url) => {
-      const result = await fetch(url);
-      const data = await result.json();
-      setTours(data.data.doc);
-    };
-
-    fetchData("http://localhost:8000/api/v1/tours");
-  }, []);
+  const tours = useSelector(selectToursMap);
 
   return (
     <div className="tourList">

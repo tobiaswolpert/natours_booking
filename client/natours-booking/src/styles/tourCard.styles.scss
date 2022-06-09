@@ -9,6 +9,9 @@
   border-radius: 5px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &__picture {
     height: 22rem;
