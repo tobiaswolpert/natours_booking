@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TourCard = ({ tour }) => {
   const url = "http://localhost:8000/img/tours/" + tour.imageCover;
   let date = new Date(tour.startDates[0].split("T")[0]);
@@ -64,7 +66,9 @@ const TourCard = ({ tour }) => {
             {tour.ratingsQuantity})
           </div>
         </div>
-        <button className="card__btn">Details</button>
+        <Link className="card__btn" to={`/tour/${tour.slug}`}>
+          <div>Details</div>
+        </Link>
       </div>
     </div>
   );

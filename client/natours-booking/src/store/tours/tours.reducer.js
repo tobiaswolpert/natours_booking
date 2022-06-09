@@ -10,9 +10,6 @@ export const toursReducer = (state = TOURS_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case TOURS_ACTION_TYPES.SET_TOURS_DATA:
-      return { ...state, tours: payload };
-
     case TOURS_ACTION_TYPES.FETCH_TOURS_START:
       return { ...state, isLoading: true };
 
