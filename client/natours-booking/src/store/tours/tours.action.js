@@ -17,7 +17,6 @@ export const fetchToursAsync = () => async (dispatch) => {
   try {
     const response = await fetch("http://localhost:8000/api/v1/tours");
     const tours = await response.json();
-    console.log("FetchTours", tours);
     dispatch(fetchToursSuccess(tours.data.doc));
   } catch (error) {
     dispatch(fetchToursFailure(error));

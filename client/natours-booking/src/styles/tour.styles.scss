@@ -3,4 +3,32 @@
 .tour {
   height: 170rem;
   background-color: index.$color-grey-light-2;
+  color: black;
+
+  &__picture {
+    text-transform: uppercase;
+    position: relative;
+
+    &-img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    &-details {
+      position: absolute;
+      left: 50%;
+      top: 10rem;
+      transform: translateX(-50%);
+    }
+
+    &-name {
+      font-size: 3rem;
+    }
+  }
+
+  &__description {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
