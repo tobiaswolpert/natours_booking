@@ -4,7 +4,6 @@ import { selectToursMap } from "../../store/tours/tours.selector";
 
 const TourList = () => {
   const tours = useSelector(selectToursMap);
-  console.log("tours", tours);
 
   return (
     <div className="tourList">

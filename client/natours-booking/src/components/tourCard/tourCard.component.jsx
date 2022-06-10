@@ -66,7 +66,7 @@ const TourCard = ({ tour }) => {
             {tour.ratingsQuantity})
           </div>
         </div>
-        <Link className="card__btn" to={`/tour/${tour.slug}`}>
+        <Link className="card__btn" to={`tour/${tour.slug}`}>
           <div>Details</div>
         </Link>
       </div>
