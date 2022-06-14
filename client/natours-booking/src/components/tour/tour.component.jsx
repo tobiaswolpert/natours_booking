@@ -111,6 +111,7 @@ const Tour = ({ data }) => {
           <div className="tour__about-text">{data.description}</div>
         </div>
       </div>
+      <div className="tour__image">Hallo</div>
     </div>
   );
 };
