@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Tour = ({ data }) => {
   console.log("Data", data);
@@ -174,6 +175,34 @@ const Tour = ({ data }) => {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        <div className="cta">
+          <div className="cta-box">
+            <div className="cta__images">
+              {data.images.map((element) => {
+                return (
+                  <img
+                    crossOrigin="anonymous"
+                    src={url + "/tours/" + element}
+                    alt={"name"}
+                  />
+                );
+              })}
+            </div>
+
+            <div className="cta__text">
+              <h3>What are you waiting for?</h3>
+              <div>
+                {data.duration} days. 1 adventure. Infinite memories. Make it
+                yours today
+              </div>
+            </div>
+
+            <Link to={"login"}>
+              <div className="cta__btn">Login to book tour</div>
+            </Link>
           </div>
         </div>
       </>
