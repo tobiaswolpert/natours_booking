@@ -324,5 +324,11 @@
     border-radius: 70px;
     font-size: 1.5rem;
     background-color: index.$color-primary;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0 1rem 2rem rgb(0 0 0 / 15%);
+    }
   }
 }
