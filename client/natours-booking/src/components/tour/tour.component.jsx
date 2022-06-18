@@ -200,7 +200,7 @@ const Tour = ({ data }) => {
               </div>
             </div>
 
-            <Link to={"login"}>
+            <Link to={"/login"}>
               <div className="cta__btn">Login to book tour</div>
             </Link>
           </div>
