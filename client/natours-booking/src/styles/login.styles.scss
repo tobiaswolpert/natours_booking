@@ -1,24 +1,19 @@
 @use "index";
 
-.login-container {
-  height: 50rem;
-  display: flex;
-}
-
-h3 {
-  font-size: 1.8rem;
-  color: index.$color-primary-light;
-  margin: auto;
-  text-transform: uppercase;
-  display: inline-block;
-}
-
 .login {
+  width: 40rem;
   background-color: white;
-  margin: auto;
-  padding: 5rem;
+  margin: 10rem auto;
+  padding: 4rem;
   border-radius: 6px;
   box-shadow: index.$shadow-light;
+
+  & h3 {
+    font-size: 1.8rem;
+    color: index.$color-primary-light;
+    text-transform: uppercase;
+    display: inline-block;
+  }
 
   &__form {
     font-size: 1.4rem;
@@ -35,10 +30,11 @@ h3 {
       height: 3.5rem;
       padding: 0 2rem 0 2rem;
       border-radius: 3px;
+      color: inherit;
+      font-weight: inherit;
 
       &:focus {
         outline: none;
-        outline-bottom: orange;
       }
     }
   }
