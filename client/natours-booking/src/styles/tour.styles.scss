@@ -1,7 +1,6 @@
 @use "index";
 
 .tour {
-  // height: 170rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content max-content;
@@ -198,8 +197,10 @@
   }
 
   &__image {
+    position: relative;
     display: flex;
     transform: skewY(-3deg);
+    z-index: 5;
 
     & img {
       width: 33.3333%;
@@ -211,10 +212,11 @@
 .reviews {
   color: index.$color-grey-dark-2;
   font-size: 1.5rem;
-  // height: 80rem;
+  position: relative;
+  z-index: 5;
   background: linear-gradient(
     to bottom right,
-    rgba(125, 213, 111, 0.85),
+    rgba(125, 213, 111, 0.98),
     rgba(40, 180, 135, 0.85)
   );
   transform: skewY(-3deg);
@@ -331,4 +333,9 @@
       box-shadow: 0 1rem 2rem rgb(0 0 0 / 15%);
     }
   }
+}
+
+.section-map {
+  transform: skewY(-3deg);
+  color: index.$color-grey-dark-2;
 }
