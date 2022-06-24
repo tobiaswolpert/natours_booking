@@ -20,7 +20,8 @@ const app = express();
 
 // 1) GLOBAL Middlewares
 //CORS middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.options("*", cors());
 
