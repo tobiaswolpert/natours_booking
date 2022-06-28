@@ -9,21 +9,21 @@ const defaultLoginFields = {
 const Login = () => {
   const [loginFields, setLoginFields] = useState(defaultLoginFields);
   const { email, password } = loginFields;
-  // console.log(loginFields);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const res = await axios({
+      const res = await fetch("http://localhost:8000/api/v1/users/login", {
         method: "POST",
-        url: "http://localhost:8000/api/v1/users/login",
-        data: { email: email, password: password },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
-      console.log("RES", res);
+      const responseData = await res.json();
+      console.log("RES", responseData);
       setLoginFields(defaultLoginFields);
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
 
