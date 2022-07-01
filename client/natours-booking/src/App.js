@@ -7,9 +7,12 @@ import { TourContainer } from "./routes/tour/tourContainer.component";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchToursAsync } from "./store/tours/tours.action";
+import { useSelector } from "react-redux";
+import { selectUserIsLoggedIn } from "./store/user/user.selector";
 
 function App() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
 
   useEffect(() => {
     dispatch(fetchToursAsync());
@@ -22,7 +25,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/tour/:tourName" element={<TourContainer />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/me" element={<Profile />} />
+          {isLoggedIn ? <Route path="/me" element={<Profile />} /> : null}
         </Route>
       </Routes>
     </div>

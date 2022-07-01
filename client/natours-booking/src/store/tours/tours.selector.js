@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 const selectToursReducer = (state) => {
   return state.tours;
 };
+
 export const selectToursIsLoading = createSelector(
   [selectToursReducer],
   (toursSlice) => toursSlice.isLoading

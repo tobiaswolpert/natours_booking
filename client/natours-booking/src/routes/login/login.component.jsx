@@ -1,5 +1,9 @@
-import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUserAsync } from "../../store/user/user.action";
+import Spinner from "../../components/spinner/spinner.component";
+import { useSelector } from "react-redux";
+import { selectUserIsLoading } from "../../store/user/user.selector";
 
 const defaultLoginFields = {
   email: "",
@@ -9,22 +13,13 @@ const defaultLoginFields = {
 const Login = () => {
   const [loginFields, setLoginFields] = useState(defaultLoginFields);
   const { email, password } = loginFields;
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectUserIsLoading);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const res = await fetch("http://localhost:8000/api/v1/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const responseData = await res.json();
-      console.log("RES", responseData);
-      setLoginFields(defaultLoginFields);
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(loginUserAsync({ email, password }));
+    setLoginFields(defaultLoginFields);
   };
 
   const handleChange = (event) => {
@@ -46,7 +41,9 @@ const Login = () => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <div className="login">
       <h3>Log into your account</h3>
       <form className="login__form" onSubmit={handleSubmit}>
