@@ -12,16 +12,9 @@ export const loginUserFailure = (error) => {
   return { type: USER_ACTION_TYPES.LOGIN_USER_FAILURE, payload: error };
 };
 
-// export const loginUserAsync = (data) => async (dispatch) => {
-//   dispatch(loginUserStart());
-//   try {
-//     const response = await fetch("http://localhost:8000/api/v1/tours");
-//     const tours = await response.json();
-//     dispatch(fetchToursSuccess(tours.data.doc));
-//   } catch (error) {
-//     dispatch(fetchToursFailure(error));
-//   }
-// };
+export const logoutUser = () => {
+  return { type: USER_ACTION_TYPES.LOGOUT_USER };
+};
 
 export const loginUserAsync = (data) => async (dispatch) => {
   dispatch(loginUserStart());

@@ -7,8 +7,11 @@ import {
   selectUserIsLoggedIn,
   selectUserDetails,
 } from "../../store/user/user.selector";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../store/user/user.action";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
   const userData = useSelector(selectUserDetails);
   const url = "http://localhost:8000/img";
@@ -23,7 +26,11 @@ const Header = () => {
         <div className="header__authentication">
           {isLoggedIn ? (
             <>
-              <Link className="header__authentication-login" to="/login">
+              <Link
+                className="header__authentication-login"
+                to="/"
+                onClick={() => dispatch(logoutUser())}
+              >
                 Log Out
               </Link>
               <Link className="user" to="/me">
