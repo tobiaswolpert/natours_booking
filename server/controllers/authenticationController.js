@@ -16,7 +16,7 @@ const createSendToken = (user, statusCode, res) => {
 
   const cookieOptions = {
     expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 3600 * 1000
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 1000
     ),
     httpOnly: true,
   };
@@ -91,14 +91,11 @@ exports.protect = catchAsync(async (req, res, next) => {
   };
 
   const decoded = await promisifyJWT(token, process.env.JWT_SECRET);
-  // console.log(decoded);
 
   // 3) Check if user still exists
   const freshUser = await User.findById(decoded.id);
-  // console.log("FreshUser", freshUser);
 
   if (!freshUser) {
-    // console.log("In the block");
     return next(
       new AppError("The user belonging to the token does no longer exist", 401)
     );

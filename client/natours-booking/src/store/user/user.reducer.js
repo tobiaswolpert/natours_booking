@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isLoading: false,
   token: "",
+  tokenExpirationDate: "",
   details: "",
   status: "",
 };
@@ -21,6 +22,9 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         isLoggedIn: true,
         token: payload.token,
+        tokenExpirationDate: new Date(
+          new Date().getTime() + 20 * 1000
+        ).toISOString(),
         status: payload.status,
         details: payload.data.user,
       };
@@ -32,6 +36,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         isLoggedIn: false,
         status: payload.message,
         token: "",
+        tokenExpirationDate: "",
         details: "",
       };
 

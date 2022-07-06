@@ -19,6 +19,11 @@ export const selectUserToken = createSelector(
   (userSlice) => userSlice.token
 );
 
+export const selectTokenExpiration = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.tokenExpirationDate
+);
+
 export const selectUserDetails = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.details
