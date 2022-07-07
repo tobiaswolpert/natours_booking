@@ -52,9 +52,8 @@ export const loginUserAsync = (data) => async (dispatch) => {
 
 export const updateSettingsAsync = (data, token, type) => async (dispatch) => {
   dispatch(updateSettingsStart());
-
   try {
-    const url =
+    let url =
       type === "password"
         ? "http://localhost:8000/api/v1/users/updateMyPassword"
         : "http://localhost:8000/api/v1/users/updateMe";
@@ -68,10 +67,14 @@ export const updateSettingsAsync = (data, token, type) => async (dispatch) => {
       body: JSON.stringify(data),
     });
     const responseData = await res.json();
-    if (responseData.error) {
-      throw new Error(responseData.message);
+    console.log("UPDATES", responseData);
+
+    if (responseData.status === "success") {
+      alert(`${type} changed successfully`);
     }
-    dispatch(updateSettingsSuccess(responseData));
+    type === "password"
+      ? dispatch(loginUserSuccess(responseData))
+      : dispatch(updateSettingsSuccess(responseData));
   } catch (err) {
     dispatch(updateSettingsFailure(err));
   }

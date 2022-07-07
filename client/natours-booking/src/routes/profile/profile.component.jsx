@@ -13,11 +13,33 @@ const Profile = () => {
   const [userDetails, setUserDetails] = useState({
     name: useSelector(selectUserDetails).name,
     email: useSelector(selectUserDetails).email,
+    passwordCurrent: "********",
+    password: "********",
+    passwordConfirm: "********",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateSettingsAsync(userDetails, token));
+
+    event.target.name.startsWith("password")
+      ? dispatch(
+          updateSettingsAsync(
+            {
+              passwordCurrent: userDetails.passwordCurrent,
+              password: userDetails.password,
+              passwordConfirm: userDetails.passwordConfirm,
+            },
+            token,
+            "password"
+          )
+        )
+      : dispatch(
+          updateSettingsAsync(
+            { name: userDetails.name, email: userDetails.email },
+            token,
+            "user"
+          )
+        );
   };
 
   const handleChange = (event) => {
@@ -29,7 +51,28 @@ const Profile = () => {
         });
         break;
 
-      case "name":
+      case "fullName":
+        setUserDetails({
+          ...userDetails,
+          name: event.target.value,
+        });
+        break;
+
+      case "passwordCurrent":
+        setUserDetails({
+          ...userDetails,
+          [event.target.name]: event.target.value,
+        });
+        break;
+
+      case "password":
+        setUserDetails({
+          ...userDetails,
+          [event.target.name]: event.target.value,
+        });
+        break;
+
+      case "passwordConfirm":
         setUserDetails({
           ...userDetails,
           [event.target.name]: event.target.value,
@@ -67,11 +110,12 @@ const Profile = () => {
       <div className="main">
         <div className="settings">
           <h3>Your account settings</h3>
-          <form className="input" onSubmit={handleSubmit}>
+
+          <form className="input" onSubmit={handleSubmit} name="user">
             <label className="input__label">Name</label>
             <input
               className="input__input"
-              name="name"
+              name="fullName"
               value={userDetails.name}
               onChange={handleChange}
             ></input>
@@ -80,7 +124,7 @@ const Profile = () => {
             <input
               type="email"
               name="email"
-              className="user-input__input"
+              className="input__input"
               value={userDetails.email}
               onChange={handleChange}
             ></input>
@@ -94,15 +138,37 @@ const Profile = () => {
 
         <div className="settings">
           <h3>password change</h3>
-          <form className="input">
+
+          <form className="input" onSubmit={handleSubmit} name="password">
             <label className="input__label">Current password</label>
-            <input type="password" className="input__input" required></input>
+            <input
+              type="password"
+              name="passwordCurrent"
+              className="input__input"
+              required
+              value={userDetails.passwordCurrent}
+              onChange={handleChange}
+            ></input>
 
             <label className="input__label">New password</label>
-            <input type="password" className="input__input" required></input>
+            <input
+              type="password"
+              name="password"
+              className="input__input"
+              required
+              value={userDetails.password}
+              onChange={handleChange}
+            ></input>
 
             <label className="user-input__label">Confirm password</label>
-            <input type="password" className="input__input" required></input>
+            <input
+              type="password"
+              name="passwordConfirm"
+              className="input__input"
+              required
+              value={userDetails.passwordConfirm}
+              onChange={handleChange}
+            ></input>
 
             <button className="input__btn" type="submit">
               save password

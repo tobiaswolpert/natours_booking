@@ -44,7 +44,11 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return { ...state, isLoading: true };
 
     case USER_ACTION_TYPES.UPDATE_SETTINGS_SUCCESS:
-      return { ...state, isLoading: false, details: payload.data.user };
+      return {
+        ...state,
+        isLoading: false,
+        details: payload.data.user,
+      };
 
     case USER_ACTION_TYPES.UPDATE_SETTINGS_FAILURE:
       return { ...state, isLoading: false };
