@@ -23,7 +23,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         isLoggedIn: true,
         token: payload.token,
         tokenExpirationDate: new Date(
-          new Date().getTime() + 20 * 1000
+          new Date().getTime() + 1 * 1000 * 60 * 20
         ).toISOString(),
         status: payload.status,
         details: payload.data.user,
@@ -39,6 +39,14 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         tokenExpirationDate: "",
         details: "",
       };
+
+    case USER_ACTION_TYPES.UPDATE_USER_START:
+      return { ...state, isLoading: true };
+
+    case USER_ACTION_TYPES.UPDATE_USER_SUCCESS:
+
+    case USER_ACTION_TYPES.UPDATE_USER_FAILURE:
+      return { ...state };
 
     case USER_ACTION_TYPES.LOGOUT_USER:
       return { ...INITIAL_STATE };

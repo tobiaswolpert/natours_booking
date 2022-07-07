@@ -1,4 +1,46 @@
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import {
+  selectUserDetails,
+  selectUserToken,
+} from "../../store/user/user.selector";
+import { updateUserAsync } from "../../store/user/user.action";
+
 const Profile = () => {
+  const dispatch = useDispatch();
+  const token = useSelector(selectUserToken);
+
+  const [userDetails, setUserDetails] = useState({
+    name: useSelector(selectUserDetails).name,
+    email: useSelector(selectUserDetails).email,
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(updateUserAsync(userDetails, token));
+  };
+
+  const handleChange = (event) => {
+    switch (event.target.name) {
+      case "email":
+        setUserDetails({
+          ...userDetails,
+          [event.target.name]: event.target.value,
+        });
+        break;
+
+      case "name":
+        setUserDetails({
+          ...userDetails,
+          [event.target.name]: event.target.value,
+        });
+        break;
+
+      default:
+        console.log("check");
+    }
+  };
+
   return (
     <div className="profile-container">
       <div className="user-nav">
@@ -25,12 +67,23 @@ const Profile = () => {
       <div className="main">
         <div className="settings">
           <h3>Your account settings</h3>
-          <form className="input">
+          <form className="input" onSubmit={handleSubmit}>
             <label className="input__label">Name</label>
-            <input className="input__input" required></input>
+            <input
+              className="input__input"
+              name="name"
+              value={userDetails.name}
+              onChange={handleChange}
+            ></input>
 
             <label className="input__label">Email</label>
-            <input type="email" className="user-input__input" required></input>
+            <input
+              type="email"
+              name="email"
+              className="user-input__input"
+              value={userDetails.email}
+              onChange={handleChange}
+            ></input>
             <button className="input__btn" type="submit">
               save settings
             </button>
