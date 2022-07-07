@@ -18,6 +18,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     dispatch(loginUserAsync({ email, password }));
     setLoginFields(defaultLoginFields);
   };
@@ -62,7 +63,7 @@ const Login = () => {
           name="password"
           required
           pattern=".{8,}"
-          placeholder="password"
+          placeholder="********"
           onChange={handleChange}
           value={password}
         />

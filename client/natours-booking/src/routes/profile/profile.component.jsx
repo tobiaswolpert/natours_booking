@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   selectUserDetails,
   selectUserToken,
 } from "../../store/user/user.selector";
-import { updateUserAsync } from "../../store/user/user.action";
+import { updateSettingsAsync } from "../../store/user/user.action";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Profile = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateUserAsync(userDetails, token));
+    dispatch(updateSettingsAsync(userDetails, token));
   };
 
   const handleChange = (event) => {

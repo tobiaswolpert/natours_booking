@@ -14,8 +14,8 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleWares = [
-  process.env.NODE_ENV !== "production" && logger,
   thunk,
+  process.env.NODE_ENV !== "production" && logger,
 ].filter(Boolean);
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));

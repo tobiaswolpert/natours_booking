@@ -40,13 +40,14 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         details: "",
       };
 
-    case USER_ACTION_TYPES.UPDATE_USER_START:
+    case USER_ACTION_TYPES.UPDATE_SETTINGS_START:
       return { ...state, isLoading: true };
 
-    case USER_ACTION_TYPES.UPDATE_USER_SUCCESS:
+    case USER_ACTION_TYPES.UPDATE_SETTINGS_SUCCESS:
+      return { ...state, isLoading: false, details: payload.data.user };
 
-    case USER_ACTION_TYPES.UPDATE_USER_FAILURE:
-      return { ...state };
+    case USER_ACTION_TYPES.UPDATE_SETTINGS_FAILURE:
+      return { ...state, isLoading: false };
 
     case USER_ACTION_TYPES.LOGOUT_USER:
       return { ...INITIAL_STATE };

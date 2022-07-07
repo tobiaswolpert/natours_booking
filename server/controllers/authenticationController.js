@@ -7,25 +7,23 @@ const crypto = require("crypto");
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+    expiresIn: process.env.JWT_EXPIRES_IN * 1000 * 60 * 20,
   });
 };
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 1000 * 60 * 20
-    ),
-    httpOnly: true,
-  };
+  // const cookieOptions = {
+  //   expires: new Date(Date.now() + 1000 * 60).toISOString(),
+  //   httpOnly: true,
+  // };
 
-  if (process.env.NODE_ENV === "production") {
-    cookieOptions.secure = true;
-  }
+  // if (process.env.NODE_ENV === "production") {
+  //   cookieOptions.secure = true;
+  // }
 
-  res.cookie("jwt", token, cookieOptions);
+  // res.cookie("jwt", token, cookieOptions);
 
   // Remove the password from the output
   user.password = undefined;
