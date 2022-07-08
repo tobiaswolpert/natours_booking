@@ -47,6 +47,7 @@ export const loginUserAsync = (data) => async (dispatch) => {
     dispatch(loginUserSuccess(responseData));
   } catch (error) {
     dispatch(loginUserFailure(error));
+    alert(error.message);
   }
 };
 

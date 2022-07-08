@@ -1,5 +1,5 @@
 import logo from "../../images/logo-white.png";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, Navigate } from "react-router-dom";
 import { Fragment } from "react";
 import Footer from "../../components/footer/footer.component";
 import { useSelector } from "react-redux";
@@ -9,12 +9,14 @@ import {
 } from "../../store/user/user.selector";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/user/user.action";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
   const userData = useSelector(selectUserDetails);
   const url = "http://localhost:8000/img";
+  const navigate = useNavigate();
 
   return (
     <Fragment>
@@ -29,7 +31,10 @@ const Header = () => {
               <Link
                 className="header__authentication-login"
                 to="/"
-                onClick={() => dispatch(logoutUser())}
+                onClick={() => {
+                  dispatch(logoutUser());
+                  navigate("/");
+                }}
               >
                 Log Out
               </Link>

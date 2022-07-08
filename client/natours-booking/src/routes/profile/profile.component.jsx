@@ -3,12 +3,14 @@ import { useState } from "react";
 import {
   selectUserDetails,
   selectUserToken,
+  selectUserIsLoading,
 } from "../../store/user/user.selector";
 import { updateSettingsAsync } from "../../store/user/user.action";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectUserToken);
+  const isLoading = useSelector(selectUserIsLoading);
 
   const [userDetails, setUserDetails] = useState({
     name: useSelector(selectUserDetails).name,
@@ -40,6 +42,12 @@ const Profile = () => {
             "user"
           )
         );
+    setUserDetails({
+      ...userDetails,
+      passwordCurrent: "********",
+      password: "********",
+      passwordConfirm: "********",
+    });
   };
 
   const handleChange = (event) => {
@@ -129,7 +137,7 @@ const Profile = () => {
               onChange={handleChange}
             ></input>
             <button className="input__btn" type="submit">
-              save settings
+              {isLoading ? "...updating" : "save settings"}
             </button>
           </form>
         </div>
@@ -171,7 +179,7 @@ const Profile = () => {
             ></input>
 
             <button className="input__btn" type="submit">
-              save password
+              {isLoading ? "...updating" : "save password"}
             </button>
           </form>
         </div>

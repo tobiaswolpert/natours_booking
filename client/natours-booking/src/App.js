@@ -13,6 +13,7 @@ import {
   selectTokenExpiration,
 } from "./store/user/user.selector";
 import { logoutUser } from "./store/user/user.action";
+import ProtectedRoutes from "./routes/protected/protected.component";
 
 let logoutTimer;
 
@@ -31,6 +32,7 @@ function App() {
       const remainingTime =
         new Date(tokenExpiration).getTime() - new Date().getTime();
       logoutTimer = setTimeout(() => dispatch(logoutUser()), remainingTime);
+      console.log("REMAINING", remainingTime);
     } else {
       clearTimeout(logoutTimer);
     }
@@ -43,7 +45,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/tour/:tourName" element={<TourContainer />} />
           <Route path="/login" element={<Login />} />
-          {isLoggedIn ? <Route path="/me" element={<Profile />} /> : null}
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/me" element={<Profile />} />
+          </Route>
         </Route>
       </Routes>
     </div>

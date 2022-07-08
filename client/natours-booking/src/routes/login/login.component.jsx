@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { loginUserAsync } from "../../store/user/user.action";
 import Spinner from "../../components/spinner/spinner.component";
 import { useSelector } from "react-redux";
-import { selectUserIsLoading } from "../../store/user/user.selector";
+import {
+  selectUserIsLoading,
+  selectUserIsLoggedIn,
+} from "../../store/user/user.selector";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const defaultLoginFields = {
   email: "",
@@ -11,10 +16,23 @@ const defaultLoginFields = {
 };
 
 const Login = () => {
+  let navigate = useNavigate();
+  let location = useLocation();
   const [loginFields, setLoginFields] = useState(defaultLoginFields);
   const { email, password } = loginFields;
   const dispatch = useDispatch();
   const isLoading = useSelector(selectUserIsLoading);
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
+  let from = location.state?.from?.pathname || "/";
+  console.log("LOGINLOCATION", location);
+  console.log("FROM", from);
+
+  useEffect(() => {
+    console.log("LOGIN", isLoggedIn);
+    if (isLoggedIn) {
+      navigate(from, { replace: true });
+    }
+  }, [isLoggedIn]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
