@@ -153,6 +153,7 @@ const Profile = () => {
               type="password"
               name="passwordCurrent"
               className="input__input"
+              pattern=".{8,}"
               required
               value={userDetails.passwordCurrent}
               onChange={handleChange}
@@ -163,6 +164,7 @@ const Profile = () => {
               type="password"
               name="password"
               className="input__input"
+              pattern=".{8,}"
               required
               value={userDetails.password}
               onChange={handleChange}
@@ -173,6 +175,7 @@ const Profile = () => {
               type="password"
               name="passwordConfirm"
               className="input__input"
+              pattern=".{8,}"
               required
               value={userDetails.passwordConfirm}
               onChange={handleChange}

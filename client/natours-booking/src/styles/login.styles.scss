@@ -38,10 +38,10 @@
       &:focus {
         outline: none;
         border-bottom: 2px solid index.$color-secondary-dark;
-      }
 
-      &:valid {
-        border-bottom: 2px solid index.$color-primary;
+        &:valid {
+          border-bottom: 2px solid index.$color-primary;
+        }
       }
 
       &::placeholder {

@@ -63,10 +63,6 @@
   flex-direction: column;
   margin: 7rem auto;
   width: 60%;
-
-  &:not(:last-child) {
-    // border-bottom: 3px solid black;
-  }
 }
 
 .input {
@@ -89,6 +85,14 @@
 
     &:focus {
       outline: none;
+      border-bottom: 2px solid index.$color-secondary-dark;
+
+      &:valid {
+        border-bottom: 2px solid index.$color-primary;
+      }
+    }
+    &::placeholder {
+      color: rgba(153, 153, 153, 0.5);
     }
   }
 
