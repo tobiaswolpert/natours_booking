@@ -6,10 +6,11 @@ import { useSelector } from "react-redux";
 import {
   selectUserIsLoading,
   selectUserIsLoggedIn,
+  selectUserStatus,
 } from "../../store/user/user.selector";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import ModalOverlay from "../../components/modal/modal.component";
+import Modal from "../../components/modal/modal.component";
 
 const defaultLoginFields = {
   email: "",
@@ -19,19 +20,17 @@ const defaultLoginFields = {
 const Login = () => {
   let navigate = useNavigate();
   let location = useLocation();
+  const dispatch = useDispatch();
   const [loginFields, setLoginFields] = useState(defaultLoginFields);
   const { email, password } = loginFields;
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectUserIsLoading);
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
+  const status = useSelector(selectUserStatus);
   let from = location.state?.from?.pathname || "/";
-  console.log("LOGINLOCATION", location);
-  console.log("FROM", from);
 
   useEffect(() => {
     console.log("LOGIN", isLoggedIn);
     if (isLoggedIn) {
-      navigate(from, { replace: true });
+      setTimeout(() => navigate(from, { replace: true }), 2000);
     }
   }, [isLoggedIn]);
 
@@ -61,11 +60,9 @@ const Login = () => {
     }
   };
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return (
     <>
-      <ModalOverlay />
+      <Modal loggedIn={isLoggedIn} status={status} />
       <div className="login">
         <h3>Log into your account</h3>
         <form className="login__form" onSubmit={handleSubmit}>

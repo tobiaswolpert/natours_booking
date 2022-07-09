@@ -1,9 +1,33 @@
-import { createPortal } from "react-dom";
+import { useState, useEffect } from "react";
 
-const ModalOverlay = () => {
-  const content = <div className="modal">Hallo</div>;
+const Modal = ({ loggedIn, status }) => {
+  const [hide, setHide] = useState(true);
 
-  return createPortal(content, document.getElementById("modal-hook"));
+  const switchStyle = (param) => {
+    switch (param) {
+      case "success":
+        return "modal-success";
+      case "Incorrect Email or password":
+        return "modal-failure";
+      default:
+        return "";
+    }
+  };
+
+  useEffect(() => {
+    if (loggedIn || status) {
+      setHide(false);
+      const timeId = setTimeout(() => setHide(true), 2000);
+
+      return () => {
+        clearTimeout(timeId);
+      };
+    }
+  }, [status, loggedIn]);
+
+  return hide ? null : (
+    <div className={`modal ${switchStyle(status)}`}>{status}</div>
+  );
 };
 
-export default ModalOverlay;
+export default Modal;

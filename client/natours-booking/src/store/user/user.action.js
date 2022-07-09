@@ -42,12 +42,12 @@ export const loginUserAsync = (data) => async (dispatch) => {
     }
     console.log("RES", responseData);
     if (responseData.status === "success") {
-      alert("User logged in successfully!");
+      // alert("User logged in successfully!");
     }
     dispatch(loginUserSuccess(responseData));
   } catch (error) {
     dispatch(loginUserFailure(error));
-    alert(error.message);
+    // alert(error.message);
   }
 };
 

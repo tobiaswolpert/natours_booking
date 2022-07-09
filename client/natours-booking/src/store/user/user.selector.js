@@ -9,6 +9,11 @@ export const selectUserIsLoading = createSelector(
   (userSlice) => userSlice.isLoading
 );
 
+export const selectUserStatus = createSelector(
+  [selectUserReducer],
+  (userSlice) => userSlice.status
+);
+
 export const selectUserIsLoggedIn = createSelector(
   [selectUserReducer],
   (userSlice) => userSlice.isLoggedIn
