@@ -9,6 +9,7 @@ import {
 } from "../../store/user/user.selector";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import ModalOverlay from "../../components/modal/modal.component";
 
 const defaultLoginFields = {
   email: "",
@@ -63,33 +64,36 @@ const Login = () => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <div className="login">
-      <h3>Log into your account</h3>
-      <form className="login__form" onSubmit={handleSubmit}>
-        <label>Email address</label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="you@example.com"
-          onChange={handleChange}
-          value={email}
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          required
-          pattern=".{8,}"
-          placeholder="********"
-          onChange={handleChange}
-          value={password}
-        />
-        <button className="login__btn" type="submit">
-          LOGIN
-        </button>
-      </form>
-    </div>
+    <>
+      <ModalOverlay />
+      <div className="login">
+        <h3>Log into your account</h3>
+        <form className="login__form" onSubmit={handleSubmit}>
+          <label>Email address</label>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            onChange={handleChange}
+            value={email}
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            required
+            pattern=".{8,}"
+            placeholder="********"
+            onChange={handleChange}
+            value={password}
+          />
+          <button className="login__btn" type="submit">
+            LOGIN
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,12 @@
+@use "index";
+
+.modal {
+  background-color: green;
+  height: 30px;
+  width: 300px;
+  transition: all 3s;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
