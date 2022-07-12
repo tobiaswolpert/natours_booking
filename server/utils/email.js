@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { getMaxListeners } = require("../app");
+// const { getMaxListeners } = require("../app");
 
 const sendEmail = async (options) => {
   // 1) Create a transporter
