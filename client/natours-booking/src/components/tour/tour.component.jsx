@@ -2,8 +2,16 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "../spinner/spinner.component";
 import Map from "../map/map.component";
+import { useSelector } from "react-redux";
+import {
+  selectUserIsLoggedIn,
+  selectUserToken,
+} from "../../store/user/user.selector";
+import { bookTour } from "../../utils/stripe";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const Tour = ({ data }) => {
+  const stripe = useStripe();
   window.scrollTo(0, 0);
   console.log("DATA", data);
   const [reviews, setReviews] = useState();
@@ -20,6 +28,9 @@ const Tour = ({ data }) => {
       return temp;
     });
 
+  const isLoggedIn = useSelector(selectUserIsLoggedIn);
+  const token = useSelector(selectUserToken);
+
   useEffect(() => {
     const fetchReview = async (link) => {
       const response = await fetch(link);
@@ -33,6 +44,14 @@ const Tour = ({ data }) => {
   const url = "http://localhost:8000/img";
   let date = new Date(data.startDates[0].split("T")[0]);
   console.log(date);
+
+  const handleClick = async (e) => {
+    e.target.textContent = "...Processing";
+    const result = await bookTour(data.id, token);
+    console.log("FINALRESULT", result);
+    await stripe.redirectToCheckout({ sessionId: result.session.id });
+    e.target.textContent = "Book Tour Now";
+  };
 
   return localLoading ? (
     <Spinner />
@@ -201,10 +220,15 @@ const Tour = ({ data }) => {
               yours today
             </div>
           </div>
-
-          <Link to={"/login"}>
-            <div className="cta__btn">Login to book tour</div>
-          </Link>
+          {isLoggedIn ? (
+            <button className="cta__btn" onClick={handleClick}>
+              Book Tour Now
+            </button>
+          ) : (
+            <Link to={"/login"}>
+              <div className="cta__btn">Login to book tour</div>
+            </Link>
+          )}
         </div>
       </section>
     </div>
