@@ -78,8 +78,6 @@ exports.getToursWithin = catchAsync(async (req, res, next) => {
 
   const radius = unit === "mi" ? distance / 3963.2 : distance / 6378.1;
 
-  // console.log(radius);
-
   if (!lat || !lng) {
     next(
       new AppError(
@@ -88,7 +86,6 @@ exports.getToursWithin = catchAsync(async (req, res, next) => {
       )
     );
   }
-  // console.log(distance, lat, lng);
 
   const tours = await Tour.find({
     startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },

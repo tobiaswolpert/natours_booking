@@ -38,10 +38,10 @@ const Tour = ({ data }) => {
       setReviews(review.data.doc.reviews);
       setlocalLoading(false);
     };
-    fetchReview(`http://localhost:8000/api/v1/tours/${data.id}`);
+    fetchReview(`${process.env.REACT_APP_BACKEND_URL}/api/v1/tours/${data.id}`);
   }, [data.id]);
 
-  const url = "http://localhost:8000/img";
+  const url = `${process.env.REACT_APP_BACKEND_URL}/img`;
   let date = new Date(data.startDates[0].split("T")[0]);
   console.log(date);
 

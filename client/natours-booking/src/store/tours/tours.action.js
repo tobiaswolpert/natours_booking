@@ -15,7 +15,9 @@ export const fetchToursFailure = (error) => {
 export const fetchToursAsync = () => async (dispatch) => {
   dispatch(fetchToursStart());
   try {
-    const response = await fetch("http://localhost:8000/api/v1/tours");
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/tours`
+    );
     const tours = await response.json();
     dispatch(fetchToursSuccess(tours.data.doc));
   } catch (error) {

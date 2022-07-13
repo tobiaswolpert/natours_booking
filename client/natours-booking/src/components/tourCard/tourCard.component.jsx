@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const TourCard = ({ tour }) => {
-  const url = "http://localhost:8000/img/tours/" + tour.imageCover;
+  const url = `${process.env.REACT_APP_BACKEND_URL}/img/tours/` + tour.imageCover;
   let date = new Date(tour.startDates[0].split("T")[0]);
 
   return (

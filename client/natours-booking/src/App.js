@@ -3,6 +3,7 @@ import Home from "./routes/home/home.component";
 import Header from "./routes/header/header.component";
 import Login from "./routes/login/login.component";
 import Profile from "./routes/profile/profile.component";
+import MyTours from "./routes/myTours/myTours";
 import { TourContainer } from "./routes/tour/tourContainer.component";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -47,6 +48,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/me" element={<Profile />} />
+            <Route path="/my-tours" element={<MyTours />} />
           </Route>
         </Route>
       </Routes>

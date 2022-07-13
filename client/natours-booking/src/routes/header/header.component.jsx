@@ -15,7 +15,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectUserIsLoggedIn);
   const userData = useSelector(selectUserDetails);
-  const url = "http://localhost:8000/img";
+  const url = `${process.env.REACT_APP_BACKEND_URL}/img`;
   const navigate = useNavigate();
 
   return (

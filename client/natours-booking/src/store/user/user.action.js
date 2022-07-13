@@ -31,11 +31,14 @@ export const updateSettingsFailure = (error) => {
 export const loginUserAsync = (data) => async (dispatch) => {
   dispatch(loginUserStart());
   try {
-    const res = await fetch("http://localhost:8000/api/v1/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
     const responseData = await res.json();
     if (responseData.error) {
       throw new Error(responseData.message);
@@ -56,8 +59,8 @@ export const updateSettingsAsync = (data, token, type) => async (dispatch) => {
   try {
     let url =
       type === "password"
-        ? "http://localhost:8000/api/v1/users/updateMyPassword"
-        : "http://localhost:8000/api/v1/users/updateMe";
+        ? `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/updateMyPassword`
+        : `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/updateMe`;
 
     const res = await fetch(url, {
       method: "PATCH",
